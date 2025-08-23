@@ -1,4 +1,6 @@
-﻿namespace Signature.Domain.ValueObjects
+﻿using Signature.Exception.Exception;
+
+namespace Signature.Domain.ValueObjects
 {
     public class CPF
     {
@@ -11,7 +13,7 @@
             }
             else
             {
-                throw new ArgumentException("Invalid CPF format.");
+                throw new DomainValidationException("Invalid CPF format.");
             }
         }
         public bool IsValid(string value)

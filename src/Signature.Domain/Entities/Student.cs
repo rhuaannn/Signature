@@ -8,7 +8,7 @@ namespace Signature.Domain.Entities
         public string Name { get; private set; }
         public Email Email { get; private set; }
         public CPF CPF { get; private set; }
-        public DateTime DateRegistration { get; private set; }
+        public DateTime DateRegistration { get; private set; } = DateTime.Now;
 
         public ICollection<StudentSignature> StudentSignatures { get; private set; }
 
@@ -27,6 +27,7 @@ namespace Signature.Domain.Entities
             StudentSignatures = new List<StudentSignature>();
         }
 
+
         public void Update(string name, string email, string cpf)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -41,6 +42,7 @@ namespace Signature.Domain.Entities
         {
             if (signature == null)
                 throw new ArgumentNullException(nameof(signature));
+
             if (signature.EndDate.HasValue && signature.EndDate.Value < startDate)
                 throw new ArgumentException("Signature end date cannot be before the start date.", nameof(signature));
 
@@ -48,5 +50,17 @@ namespace Signature.Domain.Entities
 
             StudentSignatures.Add(studentSignature);
         }
+        public void RemoveSignature(StudentSignature studentSignature)
+        {
+            if (studentSignature == null)
+                throw new ArgumentNullException(nameof(studentSignature));
+
+            if (!StudentSignatures.Contains(studentSignature))
+                throw new InvalidOperationException("The student signature does not exist in the student's signature list.");
+
+            StudentSignatures.Remove(studentSignature);
+        }
+
+
     }
 }

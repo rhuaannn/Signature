@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Signature.Domain\Signature.Domain.csproj" />
+    <ProjectReference Include="..\Signature.Exception\Signature.Exception.csproj" />
+    <ProjectReference Include="..\Signature.Infra\Signature.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

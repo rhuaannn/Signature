@@ -1,4 +1,7 @@
-﻿namespace Signature.Domain.ValueObjects
+﻿using Signature.Exception.Exception;
+using System.Net.Mail;
+
+namespace Signature.Domain.ValueObjects
 {
     public class Email
     {
@@ -11,15 +14,21 @@
             }
             else
             {
-                throw new ArgumentException("Invalid email format.");
+                throw new DomainValidationException("Invalid email format.");
             }
         }
         public bool IsValid(string value)
         {
 
-            var addr = new System.Net.Mail.MailAddress(value);
-            return addr.Address == value;
-
+            try
+            {
+                var addr = new MailAddress(value);
+                return addr.Address == value;
+            }
+            catch
+            {
+                return false;
+            }
 
         }
         public static implicit operator string(Email email) => email.Value;

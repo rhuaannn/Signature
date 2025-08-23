@@ -1,4 +1,6 @@
-﻿namespace Signature.Domain.ValueObjects
+﻿using Signature.Exception.Exception;
+
+namespace Signature.Domain.ValueObjects
 {
     public class Description
     {
@@ -11,7 +13,7 @@
             }
             else
             {
-                throw new ArgumentException("Description must be non-empty and up to 50 characters long.");
+                throw new DomainValidationException("Description must be non-empty and up to 50 characters long.");
             }
         }
 

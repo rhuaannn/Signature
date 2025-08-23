@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signature.Infra", "src\Sign
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signature.Application", "src\Signature.Application\Signature.Application.csproj", "{0756D4DF-6783-4A3E-8E55-1CE3C471F37F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signature.Exception", "src\Signature.Exception\Signature.Exception.csproj", "{80F75120-9EE7-43D7-9B51-61D709D2F2C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{0756D4DF-6783-4A3E-8E55-1CE3C471F37F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0756D4DF-6783-4A3E-8E55-1CE3C471F37F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0756D4DF-6783-4A3E-8E55-1CE3C471F37F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F75120-9EE7-43D7-9B51-61D709D2F2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F75120-9EE7-43D7-9B51-61D709D2F2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F75120-9EE7-43D7-9B51-61D709D2F2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F75120-9EE7-43D7-9B51-61D709D2F2C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{80EB6ED2-681E-4CD0-A6A7-14E67E5AEACD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{C3C92AC6-6311-4FFF-AC8A-7CD9ACCD2B91} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{0756D4DF-6783-4A3E-8E55-1CE3C471F37F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{80F75120-9EE7-43D7-9B51-61D709D2F2C8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {027DFCCC-92F1-4BAA-8C55-F6FF99A93146}
