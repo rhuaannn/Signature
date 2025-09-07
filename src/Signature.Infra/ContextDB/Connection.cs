@@ -38,6 +38,10 @@ namespace Signature.Infra.ContextDB
             modelBuilder.Entity<Domain.Entities.Signature>()
                 .OwnsOne(s => s.Description);
 
+            modelBuilder.Entity<Domain.Entities.Signature>()
+                .Property(s => s.Situation)
+                .HasConversion<int>();
+
             modelBuilder.Entity<StudentSignature>()
                 .HasKey(ss => new { ss.FKIdSignature, ss.FKIdStudent });
 
@@ -50,6 +54,9 @@ namespace Signature.Infra.ContextDB
                 .HasOne(ss => ss.Student)
                 .WithMany(s => s.StudentSignatures)
                 .HasForeignKey(ss => ss.FKIdStudent);
+
+
+
 
             base.OnModelCreating(modelBuilder);
         }

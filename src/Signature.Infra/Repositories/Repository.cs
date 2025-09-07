@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Signature.Domain.Entities;
+using Signature.Domain.ValueObjects;
 using Signature.Infra.ContextDB;
 using Signature.Infra.Interface;
 
 namespace Signature.Infra.Repositories
 {
-    public class Repository : IStudentRepository
+    public class Repository : IStudentRepository, ISignatureRepository
     {
         private readonly Connection _connection;
         public Repository(Connection connection)
@@ -21,6 +22,17 @@ namespace Signature.Infra.Repositories
             await _connection.Students.AddAsync(student);
             await _connection.SaveChangesAsync();
             return student;
+        }
+
+        public async Task<Domain.Entities.Signature> CreateSignatureAsync(Domain.Entities.Signature signature)
+        {
+            if (signature == null)
+            {
+                throw new ArgumentNullException(nameof(signature), "Signature cannot be null");
+            }
+            await _connection.Signatures.AddAsync(signature);
+            await _connection.SaveChangesAsync();
+            return signature;
         }
 
         public async Task DeleteAsync(Guid studentId)
@@ -45,15 +57,17 @@ namespace Signature.Infra.Repositories
             return studentExist;
         }
 
-        public Task<Student> GetByCPFAsync(string cpf)
+        public Task<Student> GetByCPFAsync(CPF cpf)
         {
-            var student = _connection.Students.FirstOrDefaultAsync(s => s.CPF.Value == cpf);
-            if (student == null)
+            var studentCPF = _connection.Students.FirstOrDefaultAsync(s => s.CPF.Value == cpf);
+            if (studentCPF == null)
             {
                 throw new ArgumentException("Student not found");
             }
-            return student;
+            return studentCPF;
         }
+
+
 
         public Task<Student> UpdateAsync(Student student)
         {

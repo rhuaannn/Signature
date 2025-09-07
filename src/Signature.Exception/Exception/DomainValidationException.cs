@@ -12,6 +12,7 @@ namespace Signature.Exception.Exception
         public DomainValidationException(string error)
         {
             Errors = new List<string> { error };
+
         }
     }
 }

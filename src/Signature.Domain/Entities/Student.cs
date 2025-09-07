@@ -10,7 +10,7 @@ namespace Signature.Domain.Entities
         public CPF CPF { get; private set; }
         public DateTime DateRegistration { get; private set; } = DateTime.Now;
 
-        public ICollection<StudentSignature> StudentSignatures { get; private set; }
+        public ICollection<StudentSignature> StudentSignatures { get; private set; } = new List<StudentSignature>();
 
         private Student() { }
 
@@ -22,7 +22,6 @@ namespace Signature.Domain.Entities
             Name = name;
             Email = new Email(email);
             CPF = new CPF(cpf);
-
             DateRegistration = DateTime.Now;
             StudentSignatures = new List<StudentSignature>();
         }

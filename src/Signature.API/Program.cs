@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<Signature.Application.Interface.IStudent, Signature.Application.Services.ServiceStudent>();
 builder.Services.AddScoped<IStudentRepository, Repository>();
-
+builder.Services.AddScoped<ISignatureRepository, Repository>();
 builder.Services.AddScoped<Signature.Application.Services.ServicesSignature>();
 builder.Services.AddScoped<Signature.Infra.ContextDB.Connection>();
 

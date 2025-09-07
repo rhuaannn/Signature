@@ -123,6 +123,9 @@
   <data name="CPF" xml:space="preserve">
     <value>CPF Inválido!</value>
   </data>
+  <data name="DESCRIPTION_EMPTY" xml:space="preserve">
+    <value>Descrição Obrigatório.</value>
+  </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
     <value>E-mail inválido!</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="PASSWORD" xml:space="preserve">
     <value>Digite a quantidade correta de caracteres</value>
+  </data>
+  <data name="SITUATION_EMPTY" xml:space="preserve">
+    <value>Situação é entre 0 e 2</value>
   </data>
   <data name="UNKNOWERROR" xml:space="preserve">
     <value>Erro interno do servidor.</value>

@@ -16,6 +16,7 @@ namespace Signature.API.Controllers
         public StudentController(IStudent studentService)
         {
             _studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
+
         }
 
         [HttpPost]
@@ -34,18 +35,25 @@ namespace Signature.API.Controllers
             return Created("Sucesso", responseViewModel);
         }
 
+
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var students = await _studentService.GetAllStudentAsync();
-
-            if (students == null || !students.Any())
-            {
-                return NotFound("No students found.");
-            }
-
             var responseViewModel = students.Select(s => s.ToViewModel()).ToList();
 
+            return Ok(responseViewModel);
+        }
+        [HttpGet]
+        [Route("cpf")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetByCPF([FromQuery] string cpf)
+        {
+
+            var student = await _studentService.GetByCPFAsync(new Domain.ValueObjects.CPF(cpf));
+            var responseViewModel = student.ToViewModel();
             return Ok(responseViewModel);
         }
     }

@@ -4,6 +4,7 @@ namespace Signature.Application.ViewModels
 {
     public class CreateStudentViewModel
     {
+
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
 

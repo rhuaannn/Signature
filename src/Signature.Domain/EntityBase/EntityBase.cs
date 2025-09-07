@@ -7,5 +7,11 @@
         {
 
         }
+        public EntityBase(Guid id)
+        {
+            Id = id;
+            Id = Guid.NewGuid();
+
+        }
     }
 }

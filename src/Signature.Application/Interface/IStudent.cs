@@ -1,5 +1,6 @@
 ﻿using Signature.Application.ViewModels;
 using Signature.Domain.Entities;
+using Signature.Domain.ValueObjects;
 
 namespace Signature.Application.Interface
 {
@@ -7,7 +8,7 @@ namespace Signature.Application.Interface
     {
         Task<Student> CreateStudentAsync(Student student);
         Task<List<Student>> GetAllStudentAsync();
-
+        Task<Student> GetByCPFAsync(CPF cpf);
 
     }
 }

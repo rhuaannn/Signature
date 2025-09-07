@@ -2,6 +2,7 @@
 using Signature.Application.Mapping;
 using Signature.Application.ViewModels;
 using Signature.Domain.Entities;
+using Signature.Domain.ValueObjects;
 using Signature.Exception.Exception;
 using Signature.Infra.ContextDB;
 using Signature.Infra.Interface;
@@ -38,6 +39,20 @@ namespace Signature.Application.Services
             var student = await _studentRepository.GetAllStudentAsync();
             return student;
         }
+
+        public async Task<Student> GetByCPFAsync(CPF cpf)
+        {
+
+            var studentCPF = await _studentRepository.GetByCPFAsync(cpf);
+            if (studentCPF == null)
+            {
+                throw new ArgumentException("Student not found");
+            }
+            
+
+            return studentCPF;
+        }
+
 
 
         private void Validate(Student student)

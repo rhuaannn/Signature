@@ -1,4 +1,6 @@
-﻿using Signature.Exception.Exception;
+﻿using Signature.Domain.Entities;
+using Signature.Exception;
+using Signature.Exception.Exception;
 using System.Net.Mail;
 
 namespace Signature.Domain.ValueObjects
@@ -14,7 +16,7 @@ namespace Signature.Domain.ValueObjects
             }
             else
             {
-                throw new DomainValidationException("Invalid email format.");
+                throw new DomainValidationException(ErrorMessageException.BADREQUEST);
             }
         }
         public bool IsValid(string value)

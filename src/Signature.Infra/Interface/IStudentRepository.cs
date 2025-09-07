@@ -1,4 +1,5 @@
 ﻿using Signature.Domain.Entities;
+using Signature.Domain.ValueObjects;
 
 namespace Signature.Infra.Interface
 {
@@ -8,6 +9,6 @@ namespace Signature.Infra.Interface
         public Task<Student> CreateAsync(Student student);
         public Task<Student> UpdateAsync(Student student);
         public Task DeleteAsync(Guid studentId);
-        public Task<Student> GetByCPFAsync(string cpf);
+        public Task<Student> GetByCPFAsync(CPF cpf);
     }
 }

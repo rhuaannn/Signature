@@ -13,7 +13,7 @@ namespace Signature.Domain.ValueObjects
             }
             else
             {
-                throw new DomainValidationException("Description must be non-empty and up to 50 characters long.");
+                throw new ArgumentException("Description must be non-empty and up to 50 characters long.");
             }
         }
 

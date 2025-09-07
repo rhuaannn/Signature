@@ -1,4 +1,5 @@
-﻿using Signature.Exception.Exception;
+﻿using Signature.Exception;
+using Signature.Exception.Exception;
 
 namespace Signature.Domain.ValueObjects
 {
@@ -13,7 +14,7 @@ namespace Signature.Domain.ValueObjects
             }
             else
             {
-                throw new DomainValidationException("Invalid CPF format.");
+                throw new DomainValidationException(ErrorMessageException.BADREQUEST);
             }
         }
         public bool IsValid(string value)
@@ -27,6 +28,7 @@ namespace Signature.Domain.ValueObjects
                 return false;
 
             int sum = 0;
+
             for (int i = 0; i < 9; i++)
                 sum += int.Parse(digitsOnly[i].ToString()) * (10 - i);
             int remainder = sum % 11;

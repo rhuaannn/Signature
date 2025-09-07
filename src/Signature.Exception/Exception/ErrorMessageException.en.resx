@@ -123,11 +123,20 @@
   <data name="CPF" xml:space="preserve">
     <value>INVALID CPF</value>
   </data>
+  <data name="CPFEXIST" xml:space="preserve">
+    <value>CPF já está em uso!</value>
+  </data>
+  <data name="DESCRIPTION_EMPTY" xml:space="preserve">
+    <value>Descrição Obrigatória.</value>
+  </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
     <value>Format Invalid</value>
   </data>
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>Required Name</value>
+  </data>
+  <data name="NOTFOUND" xml:space="preserve">
+    <value>Os dados informados não existe no contexto atual.</value>
   </data>
   <data name="UNKNOW" xml:space="preserve">
     <value>Internal Server Error</value>
