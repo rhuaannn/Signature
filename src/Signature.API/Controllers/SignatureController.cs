@@ -19,21 +19,13 @@ namespace Signature.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSignature([FromBody] CreateViewModelSignature viewModel)
         {
-            if (ModelState.IsValid == false)
-            {
-                return BadRequest(ModelState);
-            }
+
             var signature = viewModel.ToDomain();
             await _signatureService.CreateSignatureAsync(signature);
 
-            return CreatedAtAction(nameof(GetById), new { id = signature.Id }, viewModel);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-
-            return Ok();
+            return Created("Sucesso", null);
         }
     }
+
+
 }

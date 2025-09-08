@@ -1,6 +1,7 @@
 ﻿using Signature.Domain.EntiteBase; // Note o 'EntiteBase' no using
 using Signature.Domain.Enum;
 using Signature.Domain.ValueObjects;
+using Signature.Exception.Exception;
 using System;
 using System.Collections.Generic;
 
@@ -12,10 +13,10 @@ namespace Signature.Domain.Entities
         private DateTime createdDate;
 
         public string Name { get; private set; } = string.Empty;
-        public Description Description { get; private set; } = new Description(string.Empty);
+        public Description Description { get; private set; }
         public DateTime StartDate { get; private set; } = DateTime.Now;
-        public DateTime? EndDate { get; private set; } = null;
-        public SignatureEnum Situation { get; set; } = SignatureEnum.Active;
+        public DateTime? EndDate { get; private set; }
+        public SignatureEnum Situation { get; set; }
         public ICollection<StudentSignature> StudentSignatures { get; private set; } = new List<StudentSignature>();
 
         protected Signature()
@@ -26,18 +27,18 @@ namespace Signature.Domain.Entities
         public Signature(string name, Description description, DateTime startDate, DateTime? endDate, int situation)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Name cannot be null or empty.", nameof(name));
-
+                throw new DomainValidationException("O nome não pode ser nulo ou vazio.");
             if (description == null)
-                throw new ArgumentNullException(nameof(description));
+                throw new DomainValidationException("A descrição não pode ser nula.");
+            if (!System.Enum.IsDefined(typeof(SignatureEnum), situation))
+                throw new DomainValidationException($"Valor inválido para situação: {situation}");
 
             Name = name;
-            Description = new Description(description);
+            Description = description;
             StartDate = startDate;
             EndDate = endDate;
             Situation = (SignatureEnum)situation;
         }
-
 
 
         public void AddStudent(StudentSignature studentSignature)

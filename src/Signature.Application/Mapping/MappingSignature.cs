@@ -1,4 +1,6 @@
 ﻿using Signature.Application.ViewModels;
+using Signature.Domain.Enum;
+using Signature.Exception.Exception;
 
 namespace Signature.Application.Mapping
 {
@@ -6,27 +8,17 @@ namespace Signature.Application.Mapping
     {
         public static Domain.Entities.Signature ToDomain(this CreateViewModelSignature viewModel)
         {
-            if (viewModel == null)
-            {
-                throw new ArgumentNullException(nameof(viewModel));
-            }
-
             return new Domain.Entities.Signature(
                 viewModel.Name,
                 new Domain.ValueObjects.Description(viewModel.Description),
                 viewModel.CreatedDate,
                 null,
-                viewModel.Situation
+                viewModel.Situation ?? 0
             );
         }
+
         public static CreateViewModelSignature ToViewModel(this Domain.Entities.Signature signature)
         {
-            if (signature == null)
-            {
-                throw new ArgumentNullException(nameof(signature));
-            }
-
-
             return new CreateViewModelSignature(
                 signature.Name,
                 (int)signature.Situation,
@@ -34,6 +26,18 @@ namespace Signature.Application.Mapping
                 signature.StartDate
             );
         }
+
+        private static SignatureEnum ToSignatureEnum(int value)
+        {
+            if (!System.Enum.IsDefined(typeof(SignatureEnum), value))
+                throw new DomainValidationException($"Valor inválido para SignatureEnum: {value}");
+
+            return (SignatureEnum)value;
+        }
+
+        private static int ToInt(SignatureEnum signatureEnum)
+        {
+            return (int)signatureEnum;
+        }
     }
 }
-

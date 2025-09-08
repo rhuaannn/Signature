@@ -11,9 +11,9 @@ namespace Signature.Application.Services
                 .NotEmpty().WithMessage("Name cannot be null or empty.")
                 .MaximumLength(200).WithMessage(ErrorMessageException.NAME_EMPTY);
             RuleFor(signature => signature.Situation)
-                .IsInEnum().WithMessage(ErrorMessageException.DESCRIPTION_EMPTY);
+                .IsInEnum().WithMessage(ErrorMessageException.SITUATION_EMPTY);
             RuleFor(Signature => Signature.Description)
-                .NotNull().WithMessage(ErrorMessageException.SITUATION_EMPTY);
+                .NotNull().WithMessage(ErrorMessageException.DESCRIPTION_EMPTY);
         }
     }
 }

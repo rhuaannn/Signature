@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Signature.API.Filters;
+using Signature.Application.Interface;
 using Signature.Application.Mapping;
+using Signature.Application.Services;
 using Signature.Infra.ContextDB;
 using Signature.Infra.Interface;
 using Signature.Infra.Repositories;
@@ -15,10 +17,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<Signature.Application.Interface.IStudent, Signature.Application.Services.ServiceStudent>();
-builder.Services.AddScoped<IStudentRepository, Repository>();
+builder.Services.AddScoped<ISignature, ServicesSignature>();
+builder.Services.AddScoped<IStudent, ServiceStudent>();
 builder.Services.AddScoped<ISignatureRepository, Repository>();
-builder.Services.AddScoped<Signature.Application.Services.ServicesSignature>();
+builder.Services.AddScoped<IStudentRepository, Repository>(); // Assumindo que você criou essa classe
+
 builder.Services.AddScoped<Signature.Infra.ContextDB.Connection>();
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
