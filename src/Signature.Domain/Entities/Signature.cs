@@ -15,7 +15,7 @@ namespace Signature.Domain.Entities
         public string Name { get; private set; } = string.Empty;
         public Description Description { get; private set; }
         public DateTime StartDate { get; private set; } = DateTime.Now;
-        public DateTime? EndDate { get; private set; }
+        public DateTime EndDate { get; private set; }
         public SignatureEnum Situation { get; set; }
         public ICollection<StudentSignature> StudentSignatures { get; private set; } = new List<StudentSignature>();
 
@@ -24,7 +24,7 @@ namespace Signature.Domain.Entities
 
         }
 
-        public Signature(string name, Description description, DateTime startDate, DateTime? endDate, int situation)
+        public Signature(string name, Description description, DateTime startDate, DateTime endDate, int situation)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new DomainValidationException("O nome não pode ser nulo ou vazio.");
@@ -32,12 +32,19 @@ namespace Signature.Domain.Entities
                 throw new DomainValidationException("A descrição não pode ser nula.");
             if (!System.Enum.IsDefined(typeof(SignatureEnum), situation))
                 throw new DomainValidationException($"Valor inválido para situação: {situation}");
+            if (endDate.GetDateTimeFormats() != null)
+            {
+                var endDateAdd = DateTime.Now;
+                endDateAdd.AddDays(30);
+                EndDate = endDateAdd;
+            }
 
             Name = name;
             Description = description;
             StartDate = startDate;
             EndDate = endDate;
             Situation = (SignatureEnum)situation;
+
         }
 
 

@@ -15,12 +15,13 @@ namespace Signature.Application.ViewModels
 
         [Required]
         public string Description { get; set; }
+        public DateTime EndDate { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public CreateViewModelSignature()
         {
 
         }
-        public CreateViewModelSignature(string name, int situation, string description, DateTime createdDate)
+        public CreateViewModelSignature(string name, int situation, string description, DateTime createdDate, DateTime endDate)
         {
             switch (situation)
             {
@@ -31,10 +32,14 @@ namespace Signature.Application.ViewModels
                 default:
                     throw new DomainValidationException($"Invalid situation value: {situation}");
             }
+
+
             Name = name;
             Situation = situation;
             Description = description;
             CreatedDate = createdDate;
+            EndDate = endDate;
+
         }
 
 

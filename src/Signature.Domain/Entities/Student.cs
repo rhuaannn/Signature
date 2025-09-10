@@ -42,8 +42,6 @@ namespace Signature.Domain.Entities
             if (signature == null)
                 throw new ArgumentNullException(nameof(signature));
 
-            if (signature.EndDate.HasValue && signature.EndDate.Value < startDate)
-                throw new ArgumentException("Signature end date cannot be before the start date.", nameof(signature));
 
             var studentSignature = new StudentSignature(signature.Id, this.Id);
 

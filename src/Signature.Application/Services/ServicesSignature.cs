@@ -20,11 +20,11 @@ namespace Signature.Application.Services
         {
             Validate(signature);
 
+            //if (createSignature.Situation != Domain.Enum.SignatureEnum.Active)
+            //{
+            //    throw new ArgumentException("A assinatura deve estar ativa ao ser criada.", nameof(signature.Situation));
+            //}
             var createSignature = await _signatureRepository.CreateSignatureAsync(signature);
-            if (createSignature.Situation != Domain.Enum.SignatureEnum.Active)
-            {
-                throw new ArgumentException("A assinatura deve estar ativa ao ser criada.", nameof(signature.Situation));
-            }
             return createSignature;
         }
 

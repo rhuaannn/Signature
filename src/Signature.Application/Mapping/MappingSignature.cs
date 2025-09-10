@@ -8,12 +8,20 @@ namespace Signature.Application.Mapping
     {
         public static Domain.Entities.Signature ToDomain(this CreateViewModelSignature viewModel)
         {
+            var endDateAdd = DateTime.Now;
+            endDateAdd = endDateAdd.AddDays(30);
+            viewModel.EndDate = endDateAdd;
+
             return new Domain.Entities.Signature(
                 viewModel.Name,
                 new Domain.ValueObjects.Description(viewModel.Description),
                 viewModel.CreatedDate,
-                null,
+                viewModel.EndDate,
                 viewModel.Situation ?? 0
+
+
+
+
             );
         }
 
@@ -23,7 +31,8 @@ namespace Signature.Application.Mapping
                 signature.Name,
                 (int)signature.Situation,
                 signature.Description.Value,
-                signature.StartDate
+                signature.StartDate,
+                signature.EndDate
             );
         }
 
